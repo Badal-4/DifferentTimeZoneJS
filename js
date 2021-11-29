@@ -1,0 +1,13 @@
+const d = new Date();
+				let diff = d.getTimezoneOffset();
+                var d1 = new Date(slotData[i].Start_Time__c).getTime()+(diff*60000*-1);
+                var d2 = new Date(slotData[i].End_Time__c).getTime()+(diff*60000*-1);
+                d1 = new Date(d1);
+                d2 = new Date(d2);
+                let startTime = slotData[i].Start_Time__c.split('T')[1];
+                let endTime = slotData[i].End_Time__c.split('T')[1];
+                let slotDate =new Date(slotData[i].slotDate__c).toLocaleString('en-us', {weekday:'long', day: 'numeric', month: 'short'});
+                startTime = String(d1.getHours()).padStart(2,'0')+':'+String(d1.getMinutes()).padStart(2,'0');
+                endTime = String(d2.getHours()).padStart(2,'0')+':'+String(d2.getMinutes()).padStart(2,'0');
+                TimingVar.key = String(d1.getDate()).padStart(2,'0')+'.' +String(d1.getMonth()+1).padStart(2,'0')+'.'+d1.getFullYear()+ ', '+ startTime + '-' + endTime;
+                if(slotIds.indexOf(slotData[i].Id) == -1)timingDropdown.push(TimingVar);
